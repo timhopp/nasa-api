@@ -9,3 +9,6 @@ export interface Photo {
   explanation: string,
   url: string
 }
+
+export interface Photos {
+}

@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction, createAsyncThunk, Action } from"@reduxjs/toolkit";
 import { AppThunk, AppDispatch } from "../app/store";
 import axios from "axios";
-import { Photo } from "../features/photos/types";
+import { Photo, Photos } from "../features/photos/types";
 
 
 const initialState: 
@@ -15,7 +15,7 @@ const currentPhotoSlice = createSlice ({
   reducers: {
     setCurrentPhoto(state, action: PayloadAction<Photo>) {
       state.push(action.payload)
-      // console.log(JSON.stringify(state))
+      console.log(JSON.stringify(state))
     }
   }
 });
@@ -30,7 +30,8 @@ export const fetchCurrentPhoto = createAsyncThunk(
   
   async (dispatch: AppDispatch) => {
      const response = await axios.get<Photo>(
-      "https://api.nasa.gov/planetary/apod?api_key=HKVSCVtMtir1FB72LWcEMiNt2kkpLf6mdcO3dVIK"
+      "https://api.nasa.gov/planetary/apod?api_key=gb8EyxhtZFQDFJtgS4FlKoumVutmPTkYStGt0MF5"
+    
     )
     dispatch(
       currentPhotoSlice.actions.setCurrentPhoto(response.data));

@@ -8,6 +8,8 @@ import { AppDispatch } from "../app/store";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchCurrentPhoto, selectCurrentPhoto } from "../reducers/currentPhotoSlice";
 import thunkMiddleware from "redux-thunk";
+import CurrentPhoto from "../components/currentPhoto"
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 const middlewareEnhancer = applyMiddleware(thunkMiddleware);
@@ -31,10 +33,10 @@ const App = () => {
 const dispatch = useDispatch();
 const currentPhoto = useSelector(selectCurrentPhoto)
 
-useEffect(() => {
-  //Why do I need to define dispatch again? Why is is a necessary argument? There must be a better way to do this. 
-  dispatch(fetchCurrentPhoto(dispatch))
-})
+// useEffect(() => {
+//   //Why do I need to define dispatch again? Why is is a necessary argument? There must be a better way to do this. 
+//   dispatch(fetchCurrentPhoto(dispatch))
+// })
 
 let content = 
   <div>{currentPhoto.title}</div>
@@ -42,24 +44,14 @@ let content =
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-          Dynamic changes? Cool
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+       NASA Picture of The Day App
       </header>
-      <div>
-        Hi
-      {content}
-      </div>
+    <div>
+      <CurrentPhoto></CurrentPhoto>
+    </div>
+
+
+
     </div>
   );
 }
