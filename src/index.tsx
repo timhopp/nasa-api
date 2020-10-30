@@ -1,12 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import App from './app/App';
+import store from "./app/store";
+import { Provider } from "react-redux";
+
 import reportWebVitals from './reportWebVitals';
+
+//By wrapping the App in Provider, the Redux store is now available to all components nested in App.
 
 ReactDOM.render(
   <React.StrictMode>
+    <Provider store={store}>
     <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

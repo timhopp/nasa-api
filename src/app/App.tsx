@@ -1,14 +1,28 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import rootReducer from "../reducers/index";
+import {Provider} from "react-redux";
+import { createStore, compose } from "redux";
 
-function App() {
+const AppWrapper = () => {
+  const store = createStore(rootReducer, undefined);
+
+  return (
+    <Provider store={store}>
+      <App/>
+    </Provider>
+  )
+}
+
+const App = () => {
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
+          Dynamic changes? Cool
         </p>
         <a
           className="App-link"
@@ -23,4 +37,4 @@ function App() {
   );
 }
 
-export default App;
+export default AppWrapper;
