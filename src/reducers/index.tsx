@@ -10,6 +10,6 @@ const rootReducer = combineReducers({
 currentPhoto: currentPhotoSlice,
 });
 
-export type Rootstate = ReturnType<typeof rootReducer>;
+// export type Rootstate = ReturnType<typeof rootReducer>;
 
 export default rootReducer;
