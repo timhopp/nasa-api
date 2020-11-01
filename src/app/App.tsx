@@ -6,11 +6,13 @@ import {Provider} from "react-redux";
 import { applyMiddleware, createStore, compose } from "redux";
 import store, { AppDispatch } from "../app/store";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchCurrentPhoto, selectCurrentPhoto } from "../reducers/currentPhotoSlice";
+import { fetchCurrentPhoto} from "../reducers/currentPhotoSlice";
 import thunkMiddleware from "redux-thunk";
 import CurrentPhoto from "../components/currentPhoto"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { RootState } from "../app/store"
+import currentPhoto from "../components/currentPhoto";
+import { current } from '@reduxjs/toolkit';
 
 const middlewareEnhancer = applyMiddleware(thunkMiddleware);
 const composedEnhancers = compose(middlewareEnhancer);
@@ -55,7 +57,8 @@ if(photoStatus === 'loading'){
 } else if (photoStatus === 'succeeded') {
    content = 
   <div>
-    {currentPhoto.title}
+   <CurrentPhoto  key={currentPhoto.title} photo = {currentPhoto}></CurrentPhoto>
+
     
     </div>
 } else if (photoStatus === 'failed') {
@@ -67,10 +70,10 @@ if(photoStatus === 'loading'){
     <div className="App">
       <header className="App-header">
        NASA Picture of The Day App
-       {content}
+    
       </header>
     <div>
-      <CurrentPhoto></CurrentPhoto>
+    {content}
     </div>
 
 

@@ -30,3 +30,7 @@ body {
 .App-link {
   color: #61dafb;
 }
+
+.img {
+  max-width: 500px;
+}

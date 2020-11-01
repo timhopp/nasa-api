@@ -50,7 +50,7 @@ const currentPhotoSlice = createSlice ({
       console.log('success')
       state.status = "succeeded";
       state.photo = state.photo.concat(action.payload);
-      console.log(JSON.stringify(state.photo[0].title))
+      console.log(JSON.stringify(state.photo[0]))
     })
   
     builder.addCase(fetchCurrentPhoto.rejected, (state, action) => {
