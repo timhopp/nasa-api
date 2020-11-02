@@ -1,10 +1,11 @@
 import React from "react"
-import { PhotoProp } from "../features/photos/types"
+import { Photo } from "../features/photos/types"
 import { connect } from "react-redux"
 
 
+//You need to define the prop { photo } then state that the prop is a type Photo
+export default function CurrentPhoto( { photo } : { photo : Photo } ) {
 
-export default function CurrentPhoto({ photo }: PhotoProp) {
   return(
     <div className="container-fluid">
       <div className="row align-items-center">

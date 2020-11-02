@@ -20,6 +20,8 @@ const favoriteSlice = createSlice({
 
     addFavorite(state, action: PayloadAction<Photo>) {
       state.favorites.push(action.payload)
+      console.log('Hit favorite')
+      console.log(JSON.stringify(state.favorites))
     }
   }
 });

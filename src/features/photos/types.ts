@@ -13,6 +13,6 @@ export interface Photo {
 // export interface Photos {
 // }
 
-export interface PhotoProp {
-  photo: { title: string, url: string, explanation: string, id?: string, date: string, copyright: string}
-}
+// export interface Photo {
+//   photo: { title: string, url: string, explanation: string, id?: string, date: string, copyright: string}
+// }
