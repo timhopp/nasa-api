@@ -3,6 +3,7 @@ import { connect } from "react-redux"
 import { AppDispatch, RootState } from "../app/store"
 import { addFavorite } from "../reducers/favoriteSlice";
 import { Photo} from "../features/photos/types";
+import DateSelector from "./datePicker";
 
 
 //Both actions and objects need to be passed into the component as a prop with a type
@@ -30,7 +31,8 @@ class Favorites extends React.Component<favoriteProps> {
       <div className="col">
 
 
-      <div className="">Date</div> 
+      <div className="">Date</div>
+        <DateSelector></DateSelector> 
       </div>
     </div>
     )

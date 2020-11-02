@@ -1,4 +1,5 @@
-import { createSlice, createAsyncThunk } from"@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, PayloadAction } from"@reduxjs/toolkit";
+import { AppThunk, AppDispatch } from "../app/store";
 import axios from "axios";
 import { Photo } from "../features/photos/types";
 
@@ -18,7 +19,7 @@ let initialState: PhotoState = {
 }
 
 export const fetchCurrentPhoto = createAsyncThunk(
-  "reducers/fetchPhoto",
+  "reducers/fetchCurrentPhoto",
   async () => {
      const response = await axios.get<Photo>(
       "https://api.nasa.gov/planetary/apod?api_key=gb8EyxhtZFQDFJtgS4FlKoumVutmPTkYStGt0MF5"
@@ -28,16 +29,30 @@ export const fetchCurrentPhoto = createAsyncThunk(
   }
 )
 
+export const fetchPhotoByDate = (formattedDate : string) => createAsyncThunk(
+  "reducers/fetchPhotoByDate",
+  async (dispatch: AppDispatch) => {
+     const response = await axios.get<Photo>(
+      "https://api.nasa.gov/planetary/apod?api_key=gb8EyxhtZFQDFJtgS4FlKoumVutmPTkYStGt0MF5&date=" + formattedDate
+    
+    );
+    console.log(response)
+    dispatch(currentPhotoSlice.actions.setCurrentPhoto(response.data))
+  }
+)
+
+
+
 
 const currentPhotoSlice = createSlice ({
   name: "currentPhoto",
   initialState,
   reducers: {
-    // setCurrentPhoto(state, action: PayloadAction<Photo>) {
-    //   state.photo.push(action.payload)
-    //   // state.photoLoaded = true;
-    //   console.log(JSON.stringify(state.photo[0]))
-    // }
+    setCurrentPhoto(state, action: PayloadAction<Photo>) {
+      state.photo.push(action.payload)
+      // state.photoLoaded = true;
+      console.log(JSON.stringify(state.photo[0]))
+    }
   },
   extraReducers: builder => {
     builder.addCase(fetchCurrentPhoto.pending, (state, action) => {

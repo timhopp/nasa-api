@@ -2,7 +2,7 @@
 //If a parameter is option, add a ? (ex. date?: string)
 
 export interface Photo {
-  id?: string, 
+  id: string, 
   date: string, 
   title: string,
   copyright: string,

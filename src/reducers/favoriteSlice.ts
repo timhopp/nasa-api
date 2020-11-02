@@ -2,8 +2,13 @@ import { createSlice, PayloadAction} from"@reduxjs/toolkit";
 import { AppThunk, AppDispatch } from "../app/store";
 import { Photo } from "../features/photos/types";
 
+
 interface FavoriteState {
   favorites: Photo[]
+}
+
+interface Duplicate {
+  duplicate: number
 }
 //Does this simply ensure an empy array is only PHoto types? 
 let initialState: FavoriteState = {
@@ -18,10 +23,17 @@ const favoriteSlice = createSlice({
     //By using PayloadAction, actions are strongly typed so that the action only suppoerts objects of the type Favorite 
     //<Favorite> is passing in the type to be checked
 
-    addFavorite(state, action: PayloadAction<Photo>) {
-      state.favorites.push(action.payload)
-      console.log('Hit favorite')
-      console.log(JSON.stringify(state.favorites))
+    addFavorite(state, action: PayloadAction<Photo>){
+       let duplicate = state.favorites.forEach(favorite => favorite.date === action.payload.date)
+       if(duplicate !== undefined){
+        console.log("Cant duplicate favs")
+        console.log(duplicate)
+      } else {
+        state.favorites.push(action.payload)
+        console.log('Hit favorite')
+        console.log(JSON.stringify(state.favorites))
+  
+      }
     }
   }
 });
