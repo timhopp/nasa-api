@@ -2,8 +2,13 @@ import { createSlice, PayloadAction} from"@reduxjs/toolkit";
 import { AppThunk, AppDispatch } from "../app/store";
 import { Photo } from "../features/photos/types";
 
+interface FavoriteState {
+  favorites: Photo[]
+}
 //Does this simply ensure an empy array is only PHoto types? 
-const initialState: Photo[] = [];
+let initialState: FavoriteState = {
+favorites: [] as Photo[]
+}
 
 //createSlice automatically generates action creators and action types, reducing the Redux boilerplate
 const favoriteSlice = createSlice({
@@ -14,7 +19,7 @@ const favoriteSlice = createSlice({
     //<Favorite> is passing in the type to be checked
 
     addFavorite(state, action: PayloadAction<Photo>) {
-      state.push(action.payload)
+      state.favorites.push(action.payload)
     }
   }
 });
@@ -25,6 +30,6 @@ const favoriteSlice = createSlice({
 
 
 
-
+export const { addFavorite } = favoriteSlice.actions
 
 export default favoriteSlice.reducer;

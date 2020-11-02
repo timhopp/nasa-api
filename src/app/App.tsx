@@ -1,18 +1,16 @@
 import React, { useEffect } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import rootReducer from "../reducers/index";
 import {Provider} from "react-redux";
 import { applyMiddleware, createStore, compose } from "redux";
-import store, { AppDispatch } from "../app/store";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchCurrentPhoto} from "../reducers/currentPhotoSlice";
 import thunkMiddleware from "redux-thunk";
 import CurrentPhoto from "../components/currentPhoto"
+import Favorites from "../components/favorites";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { RootState } from "../app/store"
-import currentPhoto from "../components/currentPhoto";
-import { current } from '@reduxjs/toolkit';
+
 
 const middlewareEnhancer = applyMiddleware(thunkMiddleware);
 const composedEnhancers = compose(middlewareEnhancer);
@@ -45,8 +43,6 @@ useEffect(() => {
   dispatch(fetchCurrentPhoto())
   //Adding the empty array as a second argument ensures it only is called once. 
   //https://stackoverflow.com/questions/53120972/how-to-call-loading-function-with-react-useeffect-only-once
-
-
 }, [])
 
 
@@ -57,9 +53,8 @@ if(photoStatus === 'loading'){
 } else if (photoStatus === 'succeeded') {
    content = 
   <div>
-   <CurrentPhoto  key={currentPhoto.title} photo = {currentPhoto}></CurrentPhoto>
-
-    
+   <CurrentPhoto  key={currentPhoto.id} photo = {currentPhoto}></CurrentPhoto>
+   <Favorites></Favorites>
     </div>
 } else if (photoStatus === 'failed') {
    content = 

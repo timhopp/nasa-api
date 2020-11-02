@@ -1,9 +1,8 @@
 import React from "react"
-import { Photo } from "../features/photos/types"
+import { PhotoProp } from "../features/photos/types"
+import { connect } from "react-redux"
 
-interface PhotoProp {
-  photo: { title: string, url: string, explanation: string}
-}
+
 
 export default function CurrentPhoto({ photo }: PhotoProp) {
   return(
@@ -18,8 +17,10 @@ export default function CurrentPhoto({ photo }: PhotoProp) {
         </div>
       <div className="col btn btn-info mr-2">Next</div>
       </div>
+  
     </div>
   )
-
-
 }
+
+
+

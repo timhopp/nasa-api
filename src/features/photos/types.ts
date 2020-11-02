@@ -10,5 +10,9 @@ export interface Photo {
   url: string
 }
 
-export interface Photos {
+// export interface Photos {
+// }
+
+export interface PhotoProp {
+  photo: { title: string, url: string, explanation: string, id?: string, date: string, copyright: string}
 }

@@ -1,7 +1,6 @@
-import { createSlice, PayloadAction, createAsyncThunk, Action } from"@reduxjs/toolkit";
-import { AppThunk, AppDispatch } from "../app/store";
+import { createSlice, createAsyncThunk } from"@reduxjs/toolkit";
 import axios from "axios";
-import { Photo, Photos } from "../features/photos/types";
+import { Photo } from "../features/photos/types";
 
 
 //Need an interface to declare the initial states type
@@ -20,7 +19,6 @@ let initialState: PhotoState = {
 
 export const fetchCurrentPhoto = createAsyncThunk(
   "reducers/fetchPhoto",
-  
   async () => {
      const response = await axios.get<Photo>(
       "https://api.nasa.gov/planetary/apod?api_key=gb8EyxhtZFQDFJtgS4FlKoumVutmPTkYStGt0MF5"
@@ -50,7 +48,6 @@ const currentPhotoSlice = createSlice ({
       console.log('success')
       state.status = "succeeded";
       state.photo = state.photo.concat(action.payload);
-      console.log(JSON.stringify(state.photo[0]))
     })
   
     builder.addCase(fetchCurrentPhoto.rejected, (state, action) => {
