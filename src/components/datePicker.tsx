@@ -2,11 +2,14 @@ import React, { useState } from "react";
 import  store  from "../app/store"
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { fetchPhotoByDate} from "../reducers/currentPhotoSlice"
+import { fetchPhotoByDate, setDate} from "../reducers/currentPhotoSlice"
 import moment from "moment"
+import { connect } from "react-redux"
+import { AppDispatch, RootState } from "../app/store" 
+
 
 interface DateProps {
-  startDate: Date;
+  startDate?: Date; 
  
 }
 
@@ -23,6 +26,7 @@ constructor(props : DateProps) {
 handleChange(date: Date) {
   let formattedDate = moment(date).format("yyyy-MM-DD")
   console.log('date is here!', formattedDate);
+  store.dispatch(setDate(formattedDate))
   store.dispatch(fetchPhotoByDate(formattedDate))
   this.setState({
     startDate: date });
@@ -32,7 +36,7 @@ handleChange(date: Date) {
 
 
 render(){
-  const {startDate } = this.state;
+  const  { startDate } = this.state;
 return ( 
     <DatePicker className="m-5"  dateFormat="yyyy/MM/dd" selected={startDate}
      onChange={this.handleChange}  
@@ -46,9 +50,16 @@ return (
 
 // const mapDispatchToProps = (dispatch: AppDispatch) => {
 //   return {
-//     changePhoto: (date: Date) => dispatch(fetchPhotoByDate(date))
 //   }
 // }
 
-// export default connect(null, mapDispatchToProps)
-// (DateSelector);
+// const mapStateToProps = (state: RootState) => {
+//   return {
+//   }
+// }
+
+// const mapDispatchToProps = ( dispatch: AppDispatch) => {
+//   return {
+// }}
+
+// export default connect()(DateSelector);

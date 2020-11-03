@@ -3,7 +3,7 @@ import './App.css';
 import rootReducer from "../reducers/index";
 import {Provider} from "react-redux";
 import { applyMiddleware, createStore, compose } from "redux";
-import { useSelector, useDispatch } from "react-redux";
+import { shallowEqual, useSelector, useDispatch } from "react-redux";
 import { fetchCurrentPhoto} from "../reducers/currentPhotoSlice";
 import thunkMiddleware from "redux-thunk";
 import CurrentPhoto from "../components/currentPhoto"
@@ -36,6 +36,7 @@ const dispatch = useDispatch();
 const photoStatus = useSelector((state: RootState) => state.currentPhoto.status)
 const error = useSelector((state: RootState) => state.currentPhoto.error)
 const currentPhoto = useSelector((state: RootState) => state.currentPhoto.photo[0]); 
+// const updated = useSelector((state: RootState) => state.currentPhoto.updated )
 
 
 useEffect(() => {
@@ -46,6 +47,8 @@ useEffect(() => {
 }, [])
 
 
+
+
 let content 
 if(photoStatus === 'loading'){
    content =
@@ -54,7 +57,7 @@ if(photoStatus === 'loading'){
    content = 
   <div>
    <CurrentPhoto  key={currentPhoto.id} photo = {currentPhoto}></CurrentPhoto>
-   <Favorites></Favorites>
+
     </div>
 } else if (photoStatus === 'failed') {
    content = 
@@ -65,7 +68,7 @@ if(photoStatus === 'loading'){
     <div className="App">
       <header className="App-header">
        NASA Picture of The Day App
-    
+       <Favorites></Favorites>
       </header>
     <div>
     {content}
