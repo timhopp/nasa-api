@@ -15,6 +15,7 @@ let initialState: FavoriteState = {
 favorites: [] as Photo[]
 }
 
+
 //createSlice automatically generates action creators and action types, reducing the Redux boilerplate
 const favoriteSlice = createSlice({
   name: 'favorites',
@@ -24,7 +25,7 @@ const favoriteSlice = createSlice({
     //<Favorite> is passing in the type to be checked
 
     addFavorite(state, action: PayloadAction<Photo>){
-       let duplicate = state.favorites.forEach(favorite => favorite.date === action.payload.date)
+       let duplicate = state.favorites.filter(favorite => favorite.title === action.payload.title)
        if(duplicate !== undefined){
         console.log("Cant duplicate favs")
         console.log(duplicate)
@@ -32,8 +33,14 @@ const favoriteSlice = createSlice({
         state.favorites.push(action.payload)
         console.log('Hit favorite')
         console.log(JSON.stringify(state.favorites))
+        console.log(duplicate)
   
       }
+    },
+
+    deleteFavorite(state, action: PayloadAction<Photo>  ){ 
+    state.favorites = state.favorites.filter(favorite => favorite.title !== action.payload.title)
+ 
     }
   }
 });
@@ -44,6 +51,6 @@ const favoriteSlice = createSlice({
 
 
 
-export const { addFavorite } = favoriteSlice.actions
+export const { addFavorite, deleteFavorite } = favoriteSlice.actions
 
 export default favoriteSlice.reducer;

@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { Component } from "react"
 import { Photo } from "../features/photos/types"
 import { connect } from "react-redux"
 
@@ -12,7 +12,7 @@ interface currentProps {
   // currentDate: string,
   //currently optional because it may or may not be dispatched?? 
   fetchPhotoByDate?: (newDate: string) => void
-  
+
 }
 
 //Need to create a state interface for local state values
@@ -101,6 +101,7 @@ render(){
 }
 
 const mapStateToProps = (state: RootState ) => {
+  console.log('map hit',state)
   return { 
     currentPhoto: state.currentPhoto.photo[0],
   }

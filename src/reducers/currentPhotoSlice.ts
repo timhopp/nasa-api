@@ -15,6 +15,7 @@ interface PhotoState {
 
 
 let initialState: PhotoState = {
+  //Array of photo types
   photo: [] as Photo[],
   date: "",
   status: 'idle',
@@ -76,6 +77,7 @@ const currentPhotoSlice = createSlice ({
       console.log('success')
       state.status = "succeeded";
       state.updated = true;
+      
       state.photo.splice(0, 1, action.payload)
       console.log(JSON.stringify(state.photo[0]))
       state.updated = false;
@@ -97,6 +99,7 @@ const currentPhotoSlice = createSlice ({
       state.status = "succeeded";
       state.photo.splice(0, 1, action.payload)
       console.log('hit builder', JSON.stringify(state.photo[0]))
+   
     })
   
     builder.addCase(fetchPhotoByDate.rejected, (state, action) => {

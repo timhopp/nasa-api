@@ -5,6 +5,7 @@ import { addFavorite } from "../reducers/favoriteSlice";
 import { fetchPhotoByDate } from "../reducers/currentPhotoSlice";
 import { Photo } from "../features/photos/types";
 import DateSelector from "./datePicker";
+import Favorite from "./favoriteCom";
 
 
 //Both actions and objects need to be passed into the component as a prop with a type
@@ -38,11 +39,11 @@ class Favorites extends React.Component<favoriteProps> {
       </div>
       </div>
       <div className = "row justify-content-center">
-        <div>
+
           {this.props.favorites.map((fav) => (
-            <div>{fav.title}</div>
+            <Favorite key={this.props.currentPhoto.title} fav={fav}></Favorite>
           ))}
-        </div>
+       
       </div>
     </div>
     )

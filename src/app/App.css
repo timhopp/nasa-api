@@ -34,3 +34,7 @@ body {
 .img {
   max-width: 500px;
 }
+
+.favimg {
+  max-width: 150px;
+}
