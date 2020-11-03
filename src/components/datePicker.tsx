@@ -13,6 +13,7 @@ interface DateProps {
  
 }
 
+//{} type is required to create new Date() in state
 export default class DateSelector extends React.Component <{}, DateProps>{
 constructor(props : DateProps) {
   super(props);

@@ -30,6 +30,7 @@ export const fetchCurrentPhoto = createAsyncThunk(
     
     );
    return response.data;
+
   }
 )
 

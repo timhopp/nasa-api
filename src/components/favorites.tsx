@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux"
 import { AppDispatch, RootState } from "../app/store"
 import { addFavorite } from "../reducers/favoriteSlice";
-import { Photo} from "../features/photos/types";
+import { fetchPhotoByDate } from "../reducers/currentPhotoSlice";
+import { Photo } from "../features/photos/types";
 import DateSelector from "./datePicker";
 
 
@@ -22,7 +23,8 @@ class Favorites extends React.Component<favoriteProps> {
 
   render(){
     return (
-      <div className= "row justify-content-center">
+      <div className="container-fluid">
+       <div className= "row justify-content-center">
       <div className="col">
 
       <button className="btn btn-success" onClick={() => this.props.addFavorite(this.props.currentPhoto)}> Favorite</button>
@@ -33,6 +35,14 @@ class Favorites extends React.Component<favoriteProps> {
 
       <div className="">Date</div>
         <DateSelector></DateSelector> 
+      </div>
+      </div>
+      <div className = "row justify-content-center">
+        <div>
+          {this.props.favorites.map((fav) => (
+            <div>{fav.title}</div>
+          ))}
+        </div>
       </div>
     </div>
     )
