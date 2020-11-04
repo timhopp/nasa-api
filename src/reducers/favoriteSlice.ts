@@ -7,10 +7,10 @@ interface FavoriteState {
   favorites: Photo[]
 }
 
-interface Duplicate {
-  duplicate: number
-}
-//Does this simply ensure an empy array is only PHoto types? 
+// interface Duplicate {
+//   duplicate: number
+// }
+//Does this simply ensure an empy array is only Photo types? 
 let initialState: FavoriteState = {
 favorites: [] as Photo[]
 }
@@ -25,10 +25,11 @@ const favoriteSlice = createSlice({
     //<Favorite> is passing in the type to be checked
 
     addFavorite(state, action: PayloadAction<Photo>){
+      //Hmm hmm
        let duplicate = state.favorites.filter(favorite => favorite.title === action.payload.title)
-       if(duplicate !== undefined){
+       if(duplicate.length > 0){
         console.log("Cant duplicate favs")
-        console.log(duplicate)
+        console.log(duplicate.length)
       } else {
         state.favorites.push(action.payload)
         console.log('Hit favorite')
