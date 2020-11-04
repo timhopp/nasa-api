@@ -13,7 +13,7 @@ class SocketService {
       this.io = io;
       //Server listeners
       io.on("connection", this._onConnect());
-      io.on("dispatch", (data) => this._onDispatch(data));
+      // io.on("dispatch", (data) => this._onDispatch(data));
     } catch (e) {
       console.error("[SOCKETSTORE ERROR]", e);
     }
@@ -60,7 +60,7 @@ class SocketService {
 
       //STUB Register listeners
 
-      socket.on("dispatch", this._onDispatch(socket));
+      // socket.on("dispatch", this._onDispatch(socket));
       socket.on("disconnect", this._onDisconnect(socket));
     };
   }
@@ -78,17 +78,17 @@ class SocketService {
 
   //Need to figure out how to add types for these payloads
   //Putting  action: any, data: any in payload={} doesn't work
-  _onDispatch(socket) {
-    return (payload = { } ) => {
-      try {
-        var action = this[payload.action];
-        if (!action || typeof action != "function") {
-          return socket.emit("error", "Unknown Action");
-        }
-        action.call(this, socket, payload.data);
-      } catch (e) {}
-    };
-  }
+  // _onDispatch(socket) {
+  //   return (payload = { } ) => {
+  //     try {
+  //       var action = this[payload.action];
+  //       if (!action || typeof action != "function") {
+  //         return socket.emit("error", "Unknown Action");
+  //       }
+  //       action.call(this, socket, payload.data);
+  //     } catch (e) {}
+  //   };
+  // }
 
   _newConnection(socket) {
     //Handshake / Confirmation of Connection

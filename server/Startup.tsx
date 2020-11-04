@@ -2,7 +2,7 @@ import bp from "body-parser";
 import cors from "cors";
 import express from "express";
 import helmet from "helmet";
-import { RegisterControllers, Paths } from "../Setup";
+import { RegisterControllers, Paths } from "../Setup.tsx";
 
 export default class Startup {
   static ConfigureGlobalMiddleware(app) {

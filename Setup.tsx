@@ -1,5 +1,5 @@
 import fs from "fs";
-import BaseController from "./server/utils/BaseController";
+import BaseController from "./server/utils/BaseController.tsx";
 
 export class Paths {
   static get Public() {

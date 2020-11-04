@@ -7,8 +7,8 @@ import express from "express";
 
 export default class BaseController{
   //TS requires types for these, but since they're express imports they are put as any
-  router: any;
-  mount: any;
+  // router: any;
+  // mount: any;
   constructor(mount) {
     if (typeof mount != "string") {
       throw new Error("Unable to register controller no mount path specified");
