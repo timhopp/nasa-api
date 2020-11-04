@@ -18,7 +18,8 @@ export function RegisterControllers(router) {
   controllers.forEach(loadController);
   async function loadController(controllerName) {
     try {
-      if (!controllerName.endsWith(".js")) return;
+      //did end with .tsx
+      if (!controllerName.endsWith(".tsx")) return;
       // @ts-ignore
       let fileHandler = await import(Paths.Controllers + "/" + controllerName);
       let controllerClass = fileHandler[controllerName.slice(0, -3)];
